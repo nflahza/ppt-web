@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ppt versi web</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f0f0f0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .slideshow-container {
+        position: relative;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 20px;
+      }
+
+      .slide {
+        display: none;
+        text-align: center;
+      }
+
+      .slide.active {
+        display: block;
+      }
+
+      .slide img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .navigation {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .btn {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 10px;
+      }
+
+      .btn:hover {
+        background-color: #45a049;
+      }
+
+      .slide-number {
+        text-align: center;
+        margin-top: 10px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Presentasinya hehe</h1>
+
+      <div class="slideshow-container">
+        <!-- Replace these images with your actual slide images -->
+        <div class="slide active">
+          <img src="Slide1.png" alt="Slide 1" />
+        </div>
+        <div class="slide">
+          <img src="Slide2.png" alt="Slide 2" />
+        </div>
+        <div class="slide">
+          <img src="Slide3.png" alt="Slide 3" />
+        </div>
+        <div class="slide">
+          <img src="Slide2.png" alt="Slide 4" />
+        </div>
+
+        <div class="slide">
+          <img src="Slide5.png" alt="Slide 5" />
+        </div>
+
+        <div class="navigation">
+          <button class="btn" onclick="changeSlide(-1)">Previous</button>
+          <button class="btn" onclick="changeSlide(1)">Next</button>
+        </div>
+
+        <div class="slide-number">
+          Slide <span id="currentSlide">1</span> of
+          <span id="totalSlides">3</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let slideIndex = 1;
+      showSlide(slideIndex);
+
+      function changeSlide(n) {
+        showSlide((slideIndex += n));
+      }
+
+      function showSlide(n) {
+        const slides = document.getElementsByClassName("slide");
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+
+        for (let i = 0; i < slides.length; i++) {
+          slides[i].classList.remove("active");
+        }
+
+        slides[slideIndex - 1].classList.add("active");
+        document.getElementById("currentSlide").textContent = slideIndex;
+        document.getElementById("totalSlides").textContent = slides.length;
+      }
+    </script>
+  </body>
+</html>
